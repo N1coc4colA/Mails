@@ -1,8 +1,8 @@
 # Mail project for Deepin (designed for) #
 
-        'Mails' is a beta of mail services based, for the moment on the SMTP system.
+        'Mails' (or 'Mail') is a beta of mail services based, for the moment on the SMTP system.
 
-Please note the fact that this is a beta, a project in developement, some things can don't work as expected (...). If you want to help this project and impove it, open an issue and put as title "(DEIH-Ask) Developement, Enhance, Improvement and Help". This project is under GPU 3.0 License, Like all the other projects I have.
+Please note the fact that this is a beta, a project in development, some things can don't work as expected (...). If you want to help this project and improve it, open an issue and put as title "(DEIH-Ask) Development, Enhance, Improvement and Help". This project is under GPU 3.0 License, Like all the other projects I have.
 
 ## Dependencies
 To build this project, you need the following developer packages (if there is):
