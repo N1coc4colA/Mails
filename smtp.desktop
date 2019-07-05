@@ -1,0 +1,13 @@
+[Desktop Entry]
+Categories=Application;Mail;Chat
+Comment=Mail for Deepin Desktop Environment
+Encoding=UTF-8
+Exec=/home/nicolas/Documents/SMTP/smtp
+Icon=logo.png
+Name=Mail
+OnlyShowIn=Deepin
+StartupNotify=false
+Terminal=false
+Type=Application
+X-Deepin-Vendor=user-custom
+X-MultipleArgs=false

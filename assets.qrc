@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>2017-11-02 15.41.47.jpg</file>
+        <file>logo.png</file>
+        <file>failed.svg</file>
+        <file>beta.png</file>
+        <file>msg_bg.jpg</file>
+    </qresource>
+</RCC>
