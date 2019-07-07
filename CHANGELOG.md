@@ -6,6 +6,7 @@
 *   The image is the system user profile image
 *   The profile image is clickable and redirect to settings
 *   Add background to the QPlainTextEdit (Message area)
+*   Handle application's logo in the docks
 
 #### Bug Fixes
 
