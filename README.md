@@ -23,6 +23,11 @@ To build this project, you need the following developer packages (if there is):
 - libqt5network5
 - libqt5network5
 ```
+*From the Community:*
+```
+- libetpan
+- mailcore2
+```
 
 ## How to build the project
 To build the Project, you need to run the following commands in the source directory:
