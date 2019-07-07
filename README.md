@@ -28,6 +28,27 @@ To build this project, you need the following developer packages (if there is):
 - libetpan
 - mailcore2
 ```
+If you don't know how to install the community's packages:
+```
+mkdir ~/libetpan
+cd ~/libetpan
+git clone --depth=1 https://github.com/dinhviethoa/libetpan
+cd libetpan
+./autogen.sh
+make >/dev/null
+sudo make install prefix=/usr >/dev/null (to install on your OS)
+```
+```
+mkdir ~/mailcore2
+cd ~/mailcore2
+git clone --branch master  https://github.com/MailCore/mailcore2
+cd mailcore2
+mkdir build
+cd build
+cmake ..
+make
+make install (to install on your OS)
+```
 
 ## How to build the project
 To build the Project, you need to run the following commands in the source directory:
