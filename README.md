@@ -14,7 +14,6 @@ To build this project, you need the following developer packages (if there is):
 - libdtkcore
 - libdtkwidget
 - libdtkwm
-- libdframeworkdbus
 ```
 *From Qt:*
 ```
@@ -23,7 +22,6 @@ To build this project, you need the following developer packages (if there is):
 - libqt5sql5-sqlite
 - libqt5network5
 - libqt5network5
-- qdbus-qt5
 ```
 
 ## How to build the project
@@ -34,10 +32,15 @@ $ qmake
 $ make
 ```
 
+## To build the translations
+```
+$ lrelease
+```
+
 ## How to run
 You can run the file by double-click and select 'run' or by typing:
 ```
-./mail
+$ ./mail
 ```
 
 ## Contact Us (Me)

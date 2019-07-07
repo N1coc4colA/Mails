@@ -302,7 +302,7 @@
       <string>Disconnected</string>
      </property>
     </widget>
-    <widget class="QWidget" name="widget_6" native="true">
+    <widget class="Avatar" name="widget_6" native="true">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -579,17 +579,28 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="widget_8" native="true">
+   <widget class="QWidget" name="logo1" native="true">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>41</width>
-      <height>41</height>
+      <x>5</x>
+      <y>5</y>
+      <width>30</width>
+      <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <kerning>false</kerning>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-image:url(:/logo.png); background-repeat: no-repeat; background-position: center;</string>
+     <string notr="true">border-image: url(:/logo.png) 0 0 0 0 stretch stretch;</string>
+    </property>
+    <property name="locale">
+     <locale language="French" country="France"/>
+    </property>
+    <property name="interactive" stdset="0">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -683,7 +694,7 @@
       <string>Déconnecté</string>
      </property>
     </widget>
-    <widget class="QWidget" name="widget_7" native="true">
+    <widget class="Avatar" name="widget_7" native="true">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -756,17 +767,17 @@
      <string>Paramètres</string>
     </property>
    </widget>
-   <widget class="QWidget" name="widget_9" native="true">
+   <widget class="QWidget" name="logo2" native="true">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>41</width>
-      <height>41</height>
+      <x>5</x>
+      <y>5</y>
+      <width>30</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image:url(:/logo.png); background-repeat: no-repeat; background-position: center;</string>
+     <string notr="true">border-image: url(:/logo.png) 0 0 0 0 stretch stretch;</string>
     </property>
    </widget>
   </widget>
@@ -781,6 +792,11 @@
    <extends>QWidget</extends>
    <header>dblureffectwidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Avatar</class>
+   <extends>QWidget</extends>
+   <header>avatar.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

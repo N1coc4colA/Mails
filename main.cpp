@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     DApplication a(argc, argv);
 
     a.setProductName("Mails");
-    a.setOrganizationName(QString(QObject::tr("TISP Way of Life(The It's Sweety Project) by χ (Chi)")));
+    a.setOrganizationName(QString(QObject::tr("EDMOL (The Enhance Design Movement Of Linux)")));
     a.setApplicationName("Mails");
     a.setApplicationVersion("1.β");
     a.setAttribute(Qt::AA_UseHighDpiPixmaps);

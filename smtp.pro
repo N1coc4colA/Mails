@@ -4,12 +4,12 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network sql
+QT       += core gui network sql dbus
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11 link_pkgconfig
-PKGCONFIG += dtkwidget dtkcore
+PKGCONFIG += dtkwidget dtkcore dframeworkdbus
 
 RC_FILE = logo.svg
 
@@ -31,12 +31,16 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
+    avatar.cpp \
     beta.cpp \
+    logo.cpp \
     mainwindow.cpp \
     smtp.cpp
 
 HEADERS  += mainwindow.h\
+    avatar.h \
     beta.h \
+    logo.h \
     smtp.h
 
 FORMS    += mainwindow.ui\
@@ -45,4 +49,5 @@ RESOURCES += assets.qrc\
 
 TRANSLATIONS = \
     translation/mails_en.ts \
-    translation/mails_fr.ts
+    translation/mails_fr.ts \
+    translation/mails_pt.ts
