@@ -22,11 +22,19 @@ To build this project, you need the following developer packages (if there is):
 - libqt5sql5-sqlite
 - libqt5network5
 - libqt5network5
+- libqt5dbus
+- libqt5linguisttools
+- libqt5webkit5
+- libqt5svg5
+- ibqt5keychain
 ```
 *From the Community:*
 ```
 - libetpan
-- mailcore2
+- libmimetic
+- libgpgmepp
+- libkf5gpgmepp
+- zlib
 ```
 If you don't know how to install the community's packages:
 ```
