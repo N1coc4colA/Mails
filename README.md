@@ -27,7 +27,7 @@ To build this project, you need the following developer packages (if there is):
 - libqt5linguisttools
 - libqt5webkit5
 - libqt5svg5
-- ibqt5keychain
+- libqt5keychain
 ```
 *From the Community:*
 ```
