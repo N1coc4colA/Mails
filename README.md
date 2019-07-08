@@ -23,20 +23,11 @@ To build this project, you need the following developer packages (if there is):
 - libqt5network5
 - libqt5network5
 - libqt5dbus
--- Not for the moment --
-- libqt5linguisttools
-- libqt5webkit5
-- libqt5svg5
-- libqt5keychain
 ```
 *From the Community:*
 ```
 - libetpan
 - libmimetic
--- Not for the moment --
-- libgpgmepp
-- libkf5gpgmepp
-- zlib
 ```
 If you don't know how to install the community's packages:
 ```
