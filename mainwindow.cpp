@@ -143,12 +143,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QPushButton *nSMTP = new QPushButton();
     QPushButton *sSMTP = new QPushButton();
 
-        connect(nSMTP, SIGNAL(clicked()), this, SLOT(sendMail()));
-        sSMTP->setStyleSheet("border-image: url(:/send.png) 0 0 0 0 stretch stretch;");
-        sSMTP->setFixedSize(32, 32);
-        buttons->addWidget(sSMTP);
-        buttons->addSpacing(4);
-        connect(nSMTP, SIGNAL(clicked()), this, SLOT(showSMTPArea()));
+    connect(sSMTP, SIGNAL(clicked()), this, SLOT(sendMail()));
+    sSMTP->setStyleSheet("border-image: url(:/send.png) 0 0 0 0 stretch stretch;");
+    sSMTP->setFixedSize(32, 32);
+    buttons->addWidget(sSMTP);
+    buttons->addSpacing(4);
+    connect(nSMTP, SIGNAL(clicked()), this, SLOT(showSMTPArea()));
         nSMTP->setStyleSheet("border-image: url(:/new.png) 0 0 0 0 stretch stretch;");
         nSMTP->setFixedSize(32, 32);
         buttons->addWidget(nSMTP);
