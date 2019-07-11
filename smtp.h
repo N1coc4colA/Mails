@@ -41,6 +41,7 @@ public:
 
 signals:
     void status( const QString &);
+    void mailSent();
 
 private slots:
     void stateChanged(QAbstractSocket::SocketState socketState);

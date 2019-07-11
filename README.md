@@ -4,6 +4,11 @@
 
 Please note the fact that this is a beta, a project in development, some things can don't work as expected (...). If you want to help this project and improve it, open an issue and put as title "(DEIH-Ask) Development, Enhance, Improvement and Help". This project is under GPU 3.0 License, Like all the other projects I have.
 
+Project stopped for 3&⅝ weeks. 
+
+App:
+Major problem: Can read email's body, but can't select which one. You can check your 'INBOX' by entering your account informations and select 'run test', you'll see headers, and senders, you'll cannot see the body (content). In the future, the app will remove the settings area to create a new one using titlebar's option button, and (not sure) save data in config file.
+
 ![alt tag](demo.png)
 
 ## Dependencies
@@ -22,33 +27,6 @@ To build this project, you need the following developer packages (if there is):
 - libqt5sql5-sqlite
 - libqt5network5
 - libqt5network5
-- libqt5dbus
-```
-*From the Community:*
-```
-- libetpan
-- libmimetic
-```
-If you don't know how to install the community's packages:
-```
-mkdir ~/libetpan
-cd ~/libetpan
-git clone --depth=1 https://github.com/dinhviethoa/libetpan
-cd libetpan
-./autogen.sh
-make >/dev/null
-sudo make install prefix=/usr >/dev/null (to install on your OS)
-```
-```
-mkdir ~/mailcore2
-cd ~/mailcore2
-git clone --branch master  https://github.com/MailCore/mailcore2
-cd mailcore2
-mkdir build
-cd build
-cmake ..
-make
-make install (to install on your OS)
 ```
 
 ## How to build the project

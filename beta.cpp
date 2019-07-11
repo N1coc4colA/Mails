@@ -2,6 +2,8 @@
 #include <ddialog.h>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QTranslator>
+#include <QApplication>
 
 DWIDGET_USE_NAMESPACE
 

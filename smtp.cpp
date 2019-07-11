@@ -245,6 +245,7 @@ void Smtp::readyRead()
         // here, we just close.
         state = Close;
         emit status( tr( "Message envoyé" ) );
+        emit mailSent();
     }
     else if ( state == Close )
     {
@@ -254,7 +255,7 @@ void Smtp::readyRead()
     else
     {
         // something broke.
-        QMessageBox::warning( 0, tr( "Qt Simple SMTP client" ), tr( "Réponse inconnue du serveur:\n\n" ) + response );
+        QMessageBox::warning( 0, tr( "Qt Simple SMTP client of DM." ), tr( "Réponse inconnue du serveur:\n\n" ) + response );
         state = Close;
         emit status( tr( "Echec de l'envoi du message." ) );
     }
