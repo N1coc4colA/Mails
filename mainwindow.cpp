@@ -389,7 +389,7 @@ void MainWindow::ChilkatSample(QString magik)
         connect(this, SIGNAL(transfer(QString)), mail, SLOT(handleMessage(QString)));
         connect(mail, SIGNAL(Processed(QString)), this, SLOT(MessageFallBack(QString)));
 
-        mail->setObjectName(magik);
+        connect(this->findChildren<MailButton *>("mail" + QString::number(i)), SIGNAL(Processed(QString)), this, SLOT(MessageFallBack(QString)));
 
         ui->listView->addItem(item);
         ui->listView->setItemWidget(item, mail);
