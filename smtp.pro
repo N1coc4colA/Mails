@@ -1,7 +1,7 @@
 
-QT       += core gui network sql dbus
+QT       += core gui network dbus
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets x11extras
 
 CONFIG += c++11 link_pkgconfig
 PKGCONFIG += dtkwidget dtkcore dframeworkdbus
@@ -489,3 +489,8 @@ DEPENDPATH += $$PWD/chilkat/include
 
 unix:!macx: LIBS += $$PWD/chilkat/lib/libchilkat-9.5.0.so
 unix:!macx: PRE_TARGETDEPS += $$PWD/chilkat/lib/libchilkat-9.5.0.a
+
+DISTFILES += \
+    Imap/Parser/regenerate-ragel.sh \
+    Imap/Parser/rfc5322.abnf \
+    Imap/Parser/rfc5322.rl

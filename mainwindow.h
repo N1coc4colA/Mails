@@ -4,10 +4,11 @@
 #include <DMainWindow>
 #include "smtp.h"
 #include <DBlurEffectWidget>
-#include <QtWidgets/QHBoxLayout>
+#include <QHBoxLayout>
 #include <QFrame>
 #include <QPropertyAnimation>
 #include <DTitlebar>
+#include <QListWidget>
 
 DWIDGET_USE_NAMESPACE
 
@@ -37,22 +38,26 @@ private slots:
     void mailSent();
     void browse();
     void showSettings();
-    void ChilkatSample(QString magik);
+    void ChilkatSample(void);
     void startUnlockBundleofChilkat();
-    void MessageFallBack(QString Message);
+    void MessageFallBack(const char *, int);
     void makeClean();
     void showSMTPArea();
     void popupSettingsDialog();
-    void handleRenameAsk(int i);
     void runCheck();
     void loadSettings();
     void saveSettings();
+    void on_runTest_clicked();
 
-    signals:
+signals:
     void transfer(QString);
     void askForRename(int i);
+    void askForNumber(int i);
     void replyForRenameAsk(QString magik);
+    void replyForNumberAsk(int k);
     void initCheck(QString magik);
+    void startConnect();
+    void MessageSender(const char *, int);
 
 public:
     Ui::MainWindow *ui;
@@ -63,8 +68,8 @@ public:
     QString server;
     QVBoxLayout *internLayout;
     QHBoxLayout *mainLayout;
-    QPropertyAnimation *expand;
     QPropertyAnimation *showSMTP;
+    QPushButton *sSMTP;
 };
 
 #endif // MAINWINDOW_H

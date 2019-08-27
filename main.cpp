@@ -16,9 +16,9 @@ int main(int argc, char *argv[])
     DApplication a(argc, argv);
 
     a.setProductName("Mails");
-    a.setOrganizationName(QString(QObject::tr("EDMOL (The Enhance Design Movement Of Linux)")));
+    a.setOrganizationName(QString(QObject::tr("The Comunity")));
     a.setApplicationName("Mails");
-    a.setApplicationVersion("3.β");
+    a.setApplicationVersion("5.β");
     a.setAttribute(Qt::AA_UseHighDpiPixmaps);
     a.setProductIcon(QIcon("logo.png"));
     a.setApplicationDisplayName(QObject::tr("Mails"));

@@ -3,6 +3,8 @@
 #include "chilkat/include/CkImap.h"
 #include "mailbutton.h"
 #include "settings.h"
+#include "dtitlebar.h"
+#include "beta.h"
 
 #include <CkGlobal.h>
 #include <CkEmail.h>
@@ -40,7 +42,6 @@
 #include <DBlurEffectWidget>
 #include <DMainWindow>
 #include <smtp.h>
-#include <DTitlebar>
 #include <DPlatformWindowHandle>
 #include <dwindowclosebutton.h>
 #include <dwindowminbutton.h>
@@ -67,24 +68,29 @@ MainWindow::MainWindow(QWidget *parent) :
     loop = 0;
 
     ui->bar->setBlendMode(DBlurEffectWidget::BehindWindowBlend);
-    ui->bar->setMaskColor(QColor(0, 0, 0, 90));
+    ui->bar->setMaskColor(QColor(0, 0, 0, 100));
+    ui->bar->setRadius(60);
+    ui->bar->setRadius(400);
+    ui->bar->setFixedWidth(300);
+    ui->bar->setRadius(90);
     ui->settings->setBlendMode(DBlurEffectWidget::BehindWindowBlend);
-    ui->settings->setMaskColor(QColor(0, 0, 0, 90));
+    ui->settings->setMaskColor(QColor(0, 0, 0, 100));
     ui->MailShower->setVisible(false);
     ui->settings->setVisible(false);
     ui->settings->setFixedWidth(300);
     ui->m_blurEffect->setVisible(true);
 
-    ui->listView->horizontalScrollBar()->setDisabled(true);
-    ui->listView->verticalScrollBar()->setStyleSheet("border: 0px;background: grey;margin: 0px 0px 0 0px;");
+    ui->listWidget->horizontalScrollBar()->setDisabled(true);
+    ui->listWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->listWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->listWidget->verticalScrollBar()->setStyleSheet("border: 0px;margin: 0px 0px 0 0px;");
 
     ui->msg->setStyleSheet("background-color: white;background-image: url(:/msg_bg.jpg);background-repeat: no-repeat; background-position: bottom right; border-width: 2.5px; border-radius: 3px; border-color: grey;");
 
     connect(ui->browseBtn, SIGNAL(clicked()), this, SLOT(browse()));
     connect(ui->setBtn, SIGNAL(clicked()), this, SLOT(showSettings()));
     connect(ui->closeSettings, SIGNAL(clicked()), this, SLOT(showSettings()));
-    connect(ui->runTest, SIGNAL(clicked()), this, SLOT(runCheck()));
-    connect(this, SIGNAL(initCheck(QString)), this, SLOT(ChilkatSample(QString)));
+    connect(ui->runTest, SIGNAL(clicked()), this, SLOT(ChilkatSample()));
 
     QString adress = ui->uname->text();
     ui->label_14->setText(adress);
@@ -102,6 +108,7 @@ MainWindow::MainWindow(QWidget *parent) :
     handle.setWindowRadius(4);
 
     DTitlebar *titleb = new DTitlebar(this);
+    titleb->setTitle("");
 
     QMenu *m_menu = new QMenu;
     titleb->setMenu(m_menu);
@@ -129,19 +136,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->setLayout(mainLayout);
 
-    expand = new QPropertyAnimation(ui->listView, "geometry");
-    expand->setDuration(1000);
-    expand->setStartValue(ui->listView->geometry());
-    expand->setEndValue(QRect(10, 220, ui->bar->width() - 20, ui->bar->height() - 110 - 10));
-    expand->start();
-
     QWidget *buttonsArea = new QWidget(titleb);
     buttonsArea->setFixedHeight(40);
 
     QHBoxLayout *buttons = new QHBoxLayout;
 
     QPushButton *nSMTP = new QPushButton();
-    QPushButton *sSMTP = new QPushButton();
+    sSMTP = new QPushButton();
 
     connect(sSMTP, SIGNAL(clicked()), this, SLOT(sendMail()));
     sSMTP->setStyleSheet("border-image: url(:/send.png) 0 0 0 0 stretch stretch;");
@@ -156,6 +157,10 @@ MainWindow::MainWindow(QWidget *parent) :
     buttons->setMargin(4);
     buttons->addStretch();
     buttonsArea->setLayout(buttons);
+
+    ui->listView_2->setSpacing(5);
+
+    qDebug() << "Every thing is setup.";
 }
 
 void MainWindow::loadSettings()
@@ -170,7 +175,6 @@ void MainWindow::loadSettings()
 
 void MainWindow::saveSettings()
 {
-
 }
 
 void MainWindow::popupSettingsDialog()
@@ -246,18 +250,6 @@ void MainWindow::showSettings()
     } else {
         ui->settings->setVisible(true);
         ui->bar->setVisible(false);
-
-        expand = new QPropertyAnimation(ui->widget_4, "geometry");
-        expand->setDuration(700);
-        expand->setStartValue(ui->widget_4->geometry());
-        expand->setEndValue(QRect(10, 270, ui->bar->width() - 20, 130));
-        expand->start();
-
-        expand = new QPropertyAnimation(ui->widget_5, "geometry");
-        expand->setDuration(700);
-        expand->setStartValue(ui->widget_5->geometry());
-        expand->setEndValue(QRect(10, 190, ui->bar->width() - 20, 70));
-        expand->start();
     }
 }
 
@@ -289,7 +281,7 @@ void MainWindow::startUnlockBundleofChilkat()
     std::cout << glob.lastErrorText() << "\r\n";
 }
 
-void MainWindow::ChilkatSample(QString magik)
+void MainWindow::ChilkatSample(void)
     {
     CkImap imap;
     qDebug() << "Running IMAP";
@@ -300,28 +292,29 @@ void MainWindow::ChilkatSample(QString magik)
     // Connect to an IMAP server.
     // Use TLS
     imap.put_Ssl(true);
-    imap.put_Port(993);
+    imap.put_Port(ui->lineEdit_4->text().toInt());
+    qDebug() << "Connection to IMAP";
     bool success = imap.Connect(ui->lineEdit_3->text().toStdString().c_str());
     if (success != true) {
         std::cout << imap.lastErrorText() << "\r\n";
         return;
-        qDebug() << "Connection to IMAP successfull";
     }
 
     // Login
     success = imap.Login(ui->uname->text().toStdString().c_str(),ui->paswd->text().toStdString().c_str());
+    qDebug() << "Connection to account";
     if (success != true) {
         std::cout << imap.lastErrorText() << "\r\n";
         return;
-        qDebug() << "Login successfull";
     }
 
     // Select an IMAP mailbox
-    success = imap.SelectMailbox("Inbox");
+    qDebug() << "Connection to the Mailbox 'INBOX'";
+    const char *BOX = "Inbox";
+    success = imap.SelectMailbox(BOX);
     if (success != true) {
         std::cout << imap.lastErrorText() << "\r\n";
         return;
-        qDebug() << "Opening Mailbox (inbox) was successfull";
     }
 
     // Once the mailbox is selected, the NumMessages property
@@ -331,7 +324,9 @@ void MainWindow::ChilkatSample(QString magik)
 
     // We can choose to fetch UIDs or sequence numbers.
     bool fetchUids = true;
+
     // Get the message IDs of all the emails in the mailbox
+    qDebug() << "Getting data about emails";
     CkMessageSet *messageSet = imap.Search("ALL",fetchUids);
     if (imap.get_LastMethodSuccess() == false) {
         std::cout << imap.lastErrorText() << "\r\n";
@@ -339,60 +334,66 @@ void MainWindow::ChilkatSample(QString magik)
     }
 
     // Fetch the emails into a bundle object:
-    CkEmailBundle *bundle = imap.FetchBundle(*messageSet);
+    qDebug() << "Fetching emails";
+    CkEmailBundle *bundle = 0;
+    bundle = imap.FetchBundle(*messageSet);
     if (imap.get_LastMethodSuccess() == false) {
         delete messageSet;
         std::cout << imap.lastErrorText() << "\r\n";
         return;
     }
 
-    // Loop over the bundle and display the FROM and SUBJECT of each.
+    qDebug() << "Setting settings";
     int i = 0;
+    qDebug() << "Getting number of messages";
+
     int numEmails = bundle->get_MessageCount();
+    // Creating the objects of the fetched mails, this way slow the app during downloading
+
+    qDebug() <<"A hard step...";
+    QVector < QPushButton *  > pEdits( numEmails, nullptr );
+    pEdits.clear();
+    qDebug() <<"Starting Downloading data";
+
     while (i < numEmails) {
         CkEmail *email = bundle->GetEmail(i);
 
-        MailButton *mail  = new MailButton(this);
-        mail->setStyleSheet("border-radius: 5px; background-color: rgba(0, 0, 0, 0); margin-bottom: 1px;");
+        qDebug() <<"Downloading Email";
+
+        QWidget *trytouse = new QWidget;
+        trytouse->setFixedHeight(70);
+        trytouse->setFixedWidth(285);
+        trytouse->setStyleSheet("background: rgba(255, 255, 255, 20);");
+
+        QPushButton *mail  = new QPushButton();
         mail->setFixedHeight(70);
-        mail->setFixedWidth(ui->listView->width() - 15);
+        mail->setFixedWidth(285);
+        mail->setText(QString(QString(email->fromName()) + "\r\n" + email->subject()));
 
-        QVBoxLayout *mLayout = new QVBoxLayout;
+        qDebug() <<"try connecting a certain slot.";
 
-        std::cout << email->ck_from() << "\r\n";
-        QLabel *FROM = new QLabel;
-        FROM->setText(email->ck_from());
-        FROM->setStyleSheet("font-size: 15px; color: white; background: #00000000;");
-        FROM->setMargin(0);
-        FROM->setFixedHeight(30);
+        pEdits[i] = mail;
+        //
+        QString FROM = QString(email->fromAddress());
+        QString SUBJECT = QString(email->subject());
+        QString CONTENT = QString(email->body());
+        connect(pEdits[i], &QPushButton::clicked, [=] (){
+            MessageFallBack(BOX, i);
+        });
 
-        std::cout << email->subject() << "\r\n";
-        QLabel *SUBJECT = new QLabel;
-        SUBJECT->setText(email->subject());
-        SUBJECT->setStyleSheet("font-size: 14px; color: white; background: #00000000;");
-        SUBJECT->setMargin(0);
-        SUBJECT->setFixedHeight(20);
+        QListWidgetItem *item = new QListWidgetItem();
+        item->setSizeHint(QSize(mail->width(), mail->height()));
 
-        std::cout << "--" << "\r\n";
+        ui->listWidget->addItem(item);
+        ui->listWidget->setItemWidget(item, trytouse);
 
-        mLayout->addWidget(FROM);
-        mLayout->addWidget(SUBJECT);
-        mail->setLayout(mLayout);
-
-        QListWidgetItem *item = new QListWidgetItem;
-        item->setSizeHint(mail->sizeHint());
-
-        emit transfer(QString(email->body()));
-        emit askForRename(i);
-
-        connect(this, SIGNAL(askForRename(int)), this, SLOT(handleRenameAsk(int)));
-        connect(this, SIGNAL(transfer(QString)), mail, SLOT(handleMessage(QString)));
-        connect(mail, SIGNAL(Processed(QString)), this, SLOT(MessageFallBack(QString)));
-
-        connect(this->findChildren<MailButton *>("mail" + QString::number(i)), SIGNAL(Processed(QString)), this, SLOT(MessageFallBack(QString)));
-
-        ui->listView->addItem(item);
-        ui->listView->setItemWidget(item, mail);
+        mail->setFlat(true);
+        mail->setStyleSheet("* { background-color: rgba(0,125,0,0) }");
+        QVBoxLayout *LL = new QVBoxLayout;
+        LL->addWidget(mail);
+        LL->setMargin(0);
+        LL->setSpacing(0);
+        trytouse->setLayout(LL);
 
         delete email;
         i = i + 1;
@@ -403,22 +404,78 @@ void MainWindow::ChilkatSample(QString magik)
     qDebug() << "The server connection was close, all the code was read properly, and as expected, if no error was print.";
 }
 
-void MainWindow::handleRenameAsk(int i)
-{
-    emit replyForRenameAsk(QString("mail" + QString::number(i)));
-}
-
 void MainWindow::runCheck()
 {
     emit initCheck(QString("mail0"));
 }
 
-void MainWindow::MessageFallBack(QString Message)
+void MainWindow::MessageFallBack(const char *BOX, int i)
 {
+    if (ui->settings->isVisible() == true)
+    {
+    } else {
+        ui->settings->setVisible(true);
+        ui->bar->setVisible(false);
+    }
+
+    CkImap imap;
+    qDebug() << "Running IMAP";
+
+    imap.put_Ssl(true);
+    imap.put_Port(ui->lineEdit_4->text().toInt());
+    qDebug() << "Connection to IMAP";
+    bool success = imap.Connect(ui->lineEdit_3->text().toStdString().c_str());
+    if (success != true) {
+        std::cout << imap.lastErrorText() << "\r\n";
+        return;
+    }
+
+    success = imap.Login(ui->uname->text().toStdString().c_str(),ui->paswd->text().toStdString().c_str());
+    qDebug() << "Connection to account";
+    if (success != true) {
+        std::cout << imap.lastErrorText() << "\r\n";
+        return;
+    }
+
+    qDebug() << "Connection to the Mailbox";
+    success = imap.SelectMailbox(BOX);
+    if (success != true) {
+        std::cout << imap.lastErrorText() << "\r\n";
+        return;
+    }
+
+    bool fetchUids = true;
+
+    qDebug() << "Getting data about emails";
+    CkMessageSet *messageSet = imap.Search("ALL",fetchUids);
+    if (imap.get_LastMethodSuccess() == false) {
+        std::cout << imap.lastErrorText() << "\r\n";
+        return;
+    }
+
+    qDebug() << "Fetching emails";
+    CkEmailBundle *bundle = 0;
+    bundle = imap.FetchBundle(*messageSet);
+    if (imap.get_LastMethodSuccess() == false) {
+        delete messageSet;
+        std::cout << imap.lastErrorText() << "\r\n";
+        return;
+    }
+
+    CkEmail *email = bundle->GetEmail(i);
+    QString FROM = QString(email->fromAddress());
+    QString SUBJECT = QString(email->subject());
+    QString CONTENT = QString(email->body());
+
     ui->MailShower->setVisible(true);
-    ui->MailCont->setPlainText(Message);
+    ui->MailCont->clear();
+    ui->FROM->setText(FROM);
+    ui->SUBJECT->setText(SUBJECT);
+    ui->MailCont->setPlainText(CONTENT);
     ui->m_blurEffect->setVisible(false);
-    internLayout->removeWidget(ui->m_blurEffect);
+    ui->settings->setVisible(false);
+    ui->bar->setVisible(true);
+    sSMTP->setVisible(false);
     internLayout->addWidget(ui->MailShower);
     this->setLayout(mainLayout);
 }
@@ -427,7 +484,13 @@ void MainWindow::showSMTPArea()
 {
     ui->MailShower->setVisible(false);
     ui->m_blurEffect->setVisible(true);
+    sSMTP->setVisible(true);
     internLayout->removeWidget(ui->MailShower);
     internLayout->addWidget(ui->m_blurEffect);
     this->setLayout(mainLayout);
+}
+
+void MainWindow::on_runTest_clicked()
+{
+    qDebug() <<"Running IMAP button was clicked.";
 }

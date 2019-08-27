@@ -7,7 +7,7 @@ Please note the fact that this is a beta, a project in development, some things 
 Project stopped for 3&⅝ weeks. 
 
 App:
-Major problem: Can read email's body, but can't select which one. You can check your 'INBOX' by entering your account informations and select 'run test', you'll see headers, and senders, you'll cannot see the body (content, or just the content). In the future, the app will remove the settings area to create a new one using titlebar's option button, and (not sure) save data in config file.
+Major problem: Can read email's body, but can't select which one. You can check your 'INBOX' by entering your account informations and select 'run test', you'll see headers, and senders, you'll cannot see the body (content). In the future, the app will remove the settings area to create a new one using titlebar's option button, and (not sure) save data in config file.
 
 ![alt tag](demo.png)
 

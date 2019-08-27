@@ -10,23 +10,14 @@ class MailButton : public QWidget
 public:
     explicit MailButton(QWidget *parent = nullptr);
     ~MailButton();
-          bool isClicked;
 signals:
           void handleContent();
           void Processed(QString);
+          void IwasClicked();
 public slots:
           void handleMessage(QString Message);
-protected:
-          void mouseReleaseEvent(QMouseEvent*);
-          void paintEvent(QPaintEvent*);
-
-private:
-           bool state;
-
-    signals:
-           void clicked();
-           void release();
-           void pressed();
+          void initialize(QString Message);
+          void handleClick();
 };
 
 #endif // MAILBUTTON_H
