@@ -47,11 +47,3 @@ You can run the file by double-click and select 'run' or by typing:
 ```
 $ ./mail
 ```
-
-## Contact Us (Me)
-Please begin title of the message with 'GH'.
-```
-n1coc4cola@gmail.com
-```
-My website (just for pc):
-https://n1coc4cola.github.io/
